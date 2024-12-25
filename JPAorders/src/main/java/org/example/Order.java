@@ -2,9 +2,9 @@ package org.example;
 
 import javax.persistence.*;
 
-@Entity //аннотация, которая указывает Hibernate, что наш класс специальный и его обьекты нужно хранить в DataBase
-@Table(name = "Orders") //устанавливаем название таблице
-public class Order { //класс Заказ
+@Entity //анотація, яка вказує Hibernate, що наш клас спеціальний та його об'єкти потрібно зберігати у DataBase
+@Table(name = "Orders") //встановлюємо назву таблиці
+public class Order { //клас Замовлення
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_order")
