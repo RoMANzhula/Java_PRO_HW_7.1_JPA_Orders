@@ -4,42 +4,42 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity //аннотация, которая указывает Hibernate, что наш класс специальный и его обьекты нужно хранить в DataBase
-@Table(name="Clients") //устанавливаем название таблице
+@Entity // Annotation indicating that this class is an entity and its objects should be stored in the database
+@Table(name="Clients") // Sets the name of the table
 public class Client {
-    @Id //аннотация, с помощью которой задаем PrimaryKey
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //автогенерация номера ID
-    @Column(name = "id_client") //устанавливаем имя для колонки таблицы
-    private Long id; //поле - идинтификатор нового Клиента
+    @Id // Annotation marking this field as the Primary Key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Automatically generates the ID
+    @Column(name = "id_client") // Sets the column name in the table
+    private Long id; // Field for the unique identifier of the Client
 
-    @Column(name = "name_client", nullable = false) //устанавливаем имя для колонки таблицы, поле не может быть пустым
-    private String name; //поле - имя Клиента
+    @Column(name = "name_client", nullable = false) // Sets the column name and makes the field non-nullable
+    private String name; // Field for the Client's name
 
-    @Column(name = "age_client", nullable = false) //устанавливаем имя для колонки таблицы, поле не может быть пустым
-    private Integer age; //поле - возраст Клиента
+    @Column(name = "age_client", nullable = false) // Sets the column name and makes the field non-nullable
+    private Integer age; // Field for the Client's age
 
-    @Column(name = "phone_client", unique = true) //устанавливаем имя для колонки таблицы, поле должно быть уникальным
-    private Integer phone; //поле - телефон Клиента
+    @Column(name = "phone_client", unique = true) // Sets the column name and enforces uniqueness
+    private Integer phone; // Field for the Client's phone number
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>(); // A list of orders associated with the client
 
-    public Client() {} //конструктор по умолчанию
+    public Client() {} // Default constructor
 
-    public Client(String name, int age, int phone) { //конструктор класса с инициализацией полей
+    public Client(String name, int age, int phone) { // Constructor to initialize fields
         this.name = name;
         this.age = age;
         this.phone = phone;
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(Order order) { // Adds an order to the list if not already present
         if (!orders.contains(order)) {
             orders.add(order);
-            order.setClient(this);
+            order.setClient(this); // Sets the client reference in the order
         }
     }
 
-    //Геттеры и Сеттеры
+    //Гетери/Сетери
     public long getId() {
         return id;
     }
@@ -80,7 +80,7 @@ public class Client {
         this.phone = phone;
     }
 
-    @Override //переопределяем метод к Строковому виду
+    @Override // перевизначаємо метод до Строкового виду
     public String toString() {
         return "Client{" +
                 "id=" + id +
