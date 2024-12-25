@@ -28,8 +28,8 @@ public class Application {
 
                     System.out.print("-> ");
 
-                    String s = sc.nextLine(); //читаем с консоли ответ от пользователя
-                    switch (s) { //ловим ответы от пользователей
+                    String s = sc.nextLine(); //читаємо з консолв відповідь від користувача
+                    switch (s) { //ловимо відповіді від користувача
                         case "1":
                             addClient(sc);
                             break;
@@ -65,9 +65,9 @@ public class Application {
                             return;
                     }
                 }
-            } finally { //обязательный блок для выполнения
-                sc.close(); //закрываем поток ввода данных с консоли от пользователей
-                em.close(); //закрываем соединене с DataBase
+            } finally { //обов'язковий блок для виконання
+                sc.close(); //зачиняємо потік вводу даних з консолі від користувача
+                em.close(); //зачиняємо з'єднання з DataBase
                 emf.close();
             }
         } catch (Exception exception) {
@@ -76,7 +76,7 @@ public class Application {
         }
     }
 
-    private static void addClient(Scanner sc) { //метод для добавления Client в таблицу
+    private static void addClient(Scanner sc) { //метод для додавання Client в таблицю
         System.out.print("Enter client name: ");
         String name = sc.nextLine();
 
@@ -100,7 +100,7 @@ public class Application {
         }
     }
 
-    private static void deleteClient(Scanner sc) { //метод для удаления Client из таблицы
+    private static void deleteClient(Scanner sc) { //метод для видалення Client з таблиці
         System.out.print("Enter client id: ");
         String sId = sc.nextLine();
         long id = Long.parseLong(sId);
@@ -120,7 +120,7 @@ public class Application {
         }
     }
 
-    private static void changeClient(Scanner sc) { //метод для изменения Client в таблице
+    private static void changeClient(Scanner sc) { //метод для зміни Client в таблиці
         System.out.print("Enter client name: ");
         String name = sc.nextLine();
 
@@ -155,7 +155,7 @@ public class Application {
         }
     }
 
-    private static void viewClients() { //метод для демонстрации всех Clients из таблицы
+    private static void viewClients() { //метод для демонстрації всіх Clients з таблиці
         String queryClients = "SELECT c FROM Client c";
         Query query = em.createQuery(queryClients, Client.class);
         List<Client> list = (List<Client>) query.getResultList();
@@ -164,7 +164,7 @@ public class Application {
             System.out.println(client);
     }
 
-    private static void addProduct(Scanner sc) { //метод для добавления Product в таблицу
+    private static void addProduct(Scanner sc) { //метод для додавання Product в таблицю
         System.out.print("Enter product name: ");
         String name = sc.nextLine();
 
@@ -187,7 +187,7 @@ public class Application {
         }
     }
 
-    private static void deleteProduct(Scanner sc) { //метод по удалению Product из таблицы
+    private static void deleteProduct(Scanner sc) { //метод по видаленню Product з таблиці
         System.out.print("Enter product id: ");
         String strId = sc.nextLine();
         long id = Long.parseLong(strId);
@@ -207,7 +207,7 @@ public class Application {
         }
     }
 
-    private static void changeProduct(Scanner sc) { //метод для изменения Product в таблице
+    private static void changeProduct(Scanner sc) { //метод для змінт Product в таблиці
         System.out.print("Enter product name: ");
         String name = sc.nextLine();
 
@@ -241,7 +241,7 @@ public class Application {
         }
     }
 
-    private static void viewProducts() { //метод для демонстрации всех продуктов в таблице
+    private static void viewProducts() { //метод для демонстрації всіх продуктів в таблиці
         String queryProducts = "SELECT p FROM Product p";
         Query query = em.createQuery(queryProducts, Product.class);
         List<Product> list = (List<Product>) query.getResultList();
@@ -250,7 +250,7 @@ public class Application {
             System.out.println(product);
     }
 
-    private static void createOrder(Scanner sc) { //метод для создания заказа
+    private static void createOrder(Scanner sc) { //метод для створення замовлення
         System.out.print("Enter you name: ");
         String name = sc.nextLine();
 
@@ -278,7 +278,7 @@ public class Application {
             em.getTransaction().rollback();
         }
     }
-    private static void viewOrders() { //метод демонстрирующий заказы
+    private static void viewOrders() { //метод для демонстрації замовлень
         String typedQueryOrder = "SELECT o FROM Order o";
         TypedQuery<Order> typedQuery = em.createQuery(typedQueryOrder, Order.class);
         List<Order> list = typedQuery.getResultList();
