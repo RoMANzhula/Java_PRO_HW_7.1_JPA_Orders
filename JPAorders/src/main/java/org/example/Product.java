@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity //аннотация, которая указывает Hibernate, что наш класс специальный и его обьекты нужно хранить в DataBase
-@Table(name = "Products") //устанавливаем таблице название
+@Entity // анотація, яка вказує Hibernate, що наш клас спеціальний та його об'єкти потрібно зберігати у DataBase
+@Table(name = "Products") // встановлюємо таблицю назву
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
